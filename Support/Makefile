@@ -38,7 +38,7 @@
 # Default Environment vars
 # can be overridden
 
-ARDUINO_PORT ?= /dev/tty.usbmodem*
+ARDUINO_PORT ?= /dev/tty.usbserial*
 ARDUINO_UPLOAD_RATE ?= 115200
 ARDUINO_AVRDUDE_PROGRAMMER ?= arduino
 ARDUINO_MCU ?= atmega328p
@@ -50,6 +50,7 @@ ARDUINO_VARIANT ?= standard
 
 TARGET = $(notdir $(CURDIR))
 INSTALL_DIR = /Applications/Arduino.app/Contents/Resources/Java
+USER_DIR    = ~/Documents/Arduino
 UPLOAD_RATE = 		$(ARDUINO_UPLOAD_RATE)
 PORT = 			$(ARDUINO_PORT)
 AVRDUDE_PROGRAMMER = 	$(ARDUINO_AVRDUDE_PROGRAMMER)
@@ -86,7 +87,13 @@ $(wildcard $(INSTALL_DIR)/libraries/*/*/*.cpp) \
 $(wildcard $(INSTALL_DIR)/libraries/*/*/*/*.cpp) \
 $(wildcard $(INSTALL_DIR)/libraries/*/*.c) \
 $(wildcard $(INSTALL_DIR)/libraries/*/*/*.c) \
-$(wildcard $(INSTALL_DIR)/libraries/*/*/*/*.c)
+$(wildcard $(INSTALL_DIR)/libraries/*/*/*/*.c) \
+$(wildcard $(USER_DIR)/libraries/*/*.cpp) \
+$(wildcard $(USER_DIR)/libraries/*/*/*.cpp) \
+$(wildcard $(USER_DIR)/libraries/*/*/*/*.cpp) \
+$(wildcard $(USER_DIR)/libraries/*/*.c) \
+$(wildcard $(USER_DIR)/libraries/*/*/*.c) \
+$(wildcard $(USER_DIR)/libraries/*/*/*/*.c)
 
 
 CXX_APP = applet/$(TARGET).cpp
